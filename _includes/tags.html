@@ -1,0 +1,96 @@
+<h3>{{ page.catename }}({{ site.categories[page.catename] | size }})</h3>
+<!-- 文章列表  jing-->
+
+{% if page.tags != empty %}
+<ul class="tags emphnext">
+  <li>标签：</li>
+  {% for tag in page.tags %}
+  <li>
+    <a href="{{ site.baseurl }}/tags/?tag={{tag | cgi}}">
+      {{ tag }}
+    </a>
+    {% if forloop.last == false %}, {%endif %}
+  </li>
+  {% endfor %}
+</ul>
+{% endif%}
+
+<div id="tag_cloud">
+  {% for tag in site.tags %}
+  <a href="javascript:;" onclick="showTag('{{ tag[0] }}')" title="{{ tag[0] }}" rel="{{ tag[1].size }}">
+    {{ tag[0] }}
+  </a>
+  {% endfor %}
+  </div>
+
+<div id="show-tag">
+  <div style="text-align:center">
+    <img src="/images/loading.gif"/>&nbsp;&nbsp;loading...
+  </div>
+</div>
+
+
+<script src="/js/jquery-1.7.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+        var jq = jQuery.noConflict();
+        jq(document).ready(function(){
+
+            jq('.posts a').each(function(index,element){
+                var href = jq(this).attr('href');
+                if(href.indexOf('#') == 0){
+                }else if ( href.indexOf('/') == 0 || href.toLowerCase().indexOf('art.yanping.me')>-1 ){
+                }else{
+                    jq(this).attr('target','_blank');
+                    jq(this).addClass('external');
+                }
+            });
+        });
+
+</script>
+    <script src="/js/jquery.tagcloud.js" type="text/javascript" charset="utf-8"></script> 
+    <script language="javascript">
+    jq.fn.tagcloud.defaults = {
+        size: {start: 12, end: 22, unit: 'px'},
+          color: {start: '#7CCD7C', end: '#CD0000'}
+    };
+
+    jq(function () {
+        jq('#tag_cloud a').tagcloud();
+    });
+    </script>
+
+
+<script type="text/javascript">
+        function showTag(tagStr){
+            jq.getJSON("../post.json",function(data){
+                jq('#show-tag').empty(content);
+                var content ="<h2>分类："+ tagStr +"</h2><ul class=\"posts\">";
+                var count = 0;
+                jq.each(data,function(i,item){
+                    jq.each(item.tags,function(j,tag){
+                        if(tag == tagStr)   {
+                        content += "<li class=\"listing-item\"><time datetime=\""+ item.date +"\">" + item.date + "</time><a href=\""+item.url+"\">"+ item.title+"<img src=\"" +item.img +"\"/>"+"</a></li>";
+                        count++;
+                        }
+                    });
+                });
+                if(count>0){
+                    content +="</ul>";
+                    postNumStr = "<span>（"+count + "篇文章）</span>";
+                    jq('#show-tag').append(content);
+                    jq('#show-tag>h2').append(postNumStr);
+                }
+            });
+        }
+    </script>
+
+<script type="text/javascript">
+    var href= window.location.href;
+    var pos = href.indexOf('?tag=');
+    var paraStr = href.substring(pos+5);
+    if(pos>0){
+        showTag(decodeURI(paraStr));
+    } else{
+        showTag("");
+    }
+</script>

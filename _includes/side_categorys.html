@@ -1,0 +1,10 @@
+<div class="side radius left">
+    <div class="side-title">
+    <span>分类(Categorys)</span>
+    </div>
+	<ul class="side_ul">
+		{% for category in site.categories  %}
+		<li><a href="{{ site.url }}/categorys/{{ category | first  }}.html">{{ category | first  }}({{ category | last | size  }})</a></li>
+		{% endfor  %}
+	</ul>
+</div>

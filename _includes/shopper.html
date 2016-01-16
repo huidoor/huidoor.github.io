@@ -1,0 +1,55 @@
+<div class="shopper-box radius">
+<div class="shopper-info radius">
+        <div class="left">
+            <img src="{{ site:url }}/images/{{ page.img }}" alt="{{page.author}}" title="{{page.author}}" width="80px" height="80px" />
+ <!--            <h3>{{ page.author }} 的推荐</h3> -->
+        </div>
+<!--         <div class="left">
+            <p>{{page.description}}</p>
+        </div> -->
+<div>
+          <div class="shopper-name">  <h3>{{ page.author }} 同学</h3></div>
+        <div class="quote-words"><div class="quote-icon"></div><a class="quote-text" href="/app/2303?platform=1" target="_blank"> 如果你对 iOS 8 自带的慢镜头效果不太满意，那么这款 Slow Fast Slow 你一定会喜欢，不仅视频的速率可以自由调节，而且还可以加快速度.深刻的减肥路上看到 酒店附近的上看风景看电视积分看电视积分快速的反击房间都是利费..</a> <div class="rotate-quote-mark"></div></div>
+        </div>
+
+</div>
+
+<!-- 文章列表  jing-->
+{% for post in site.posts %} {% for author in post.author %} {% if author == page.author %}
+<div class="store-box-shopper">
+    <div class="store-top-shopper">
+        <div class="store-logo-shopper">
+            {% if post.img %}
+            <a href="http://{{ post.shop.url }}" target="_blank" title="{{post.shop.name}}">
+                <img src="{{ site:url }}/images/{{ post.img }}" alt="{{post.shop.name}}" />
+            </a>
+            {% endif %}
+        </div>
+        <div class="store-info-shopper">
+            <h4>
+                <a href="{{ site:url  }}{{ post.url  }}" target="_blank">{{post.shop.name}}</a>
+            </h4>
+            <p>{{ post.subtitle }}</p>
+        </div>
+
+    </div>
+</div>
+{% endif %} {% endfor %} {% endfor %}
+
+<!--高速版，加载速度快，使用前需测试页面的兼容性-->
+<div id="SOHUCS"></div>
+<script>
+  (function(){
+    var appid = 'cyruUX11a',
+    conf = 'prod_d4078773be683af182c396b69e673086';
+    var doc = document,
+    s = doc.createElement('script'),
+    h = doc.getElementsByTagName('head')[0] || doc.head || doc.documentElement;
+    s.type = 'text/javascript';
+    s.charset = 'utf-8';
+    s.src =  'http://assets.changyan.sohu.com/upload/changyan.js?conf='+ conf +'&appid=' + appid;
+    h.insertBefore(s,h.firstChild);
+    window.SCS_NO_IFRAME = true;
+  })()
+</script>
+</div>

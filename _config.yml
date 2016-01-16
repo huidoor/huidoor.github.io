@@ -1,0 +1,5 @@
+permalink: /shop/:title.html
+baseurl: /
+url: http://www.huidoor.com
+paginate: 100
+shoppers: {xiongfeiting: 大熊,liuyanhua: 刘艳华,jialing: 贾凌,wangxiaochun: 王晓春,lixiyan: 李喜燕,caili: 蔡莉}

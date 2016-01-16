@@ -1,0 +1,15 @@
+<div class="side radius left">
+    <div class="side-title">
+    <span>shopping</span>
+    </div>
+    <ul class="shopper-list">
+	{% for shopper in site.shoppers  %}
+    <li>
+	<a href="{{ site.url }}/shopper/{{ shopper | first  }}.html">
+<img src="{{ site:url }}/images/author/{{ shopper | first  }}/{{ shopper | first  }}.jpg" alt="{{ shopper | last  }}"  title="{{ shopper | last  }}" width="57.6px"  height="57.6px" />
+    </a>
+    </li>
+	{% endfor  %}
+</ul>
+</div>
+

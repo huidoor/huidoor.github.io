@@ -1,0 +1,12 @@
+<div class="side radius left">
+    <div class="side-title">
+    <span>热门(Hot)</span>
+    </div>
+    <ul class="tertiary-category-items">
+    {% for tag in site.tags %}
+            <li class="tertiary-category-item"><a href="{{ site.url }}/tags/?tag={{tag[0] | cgi}}" title="{{ tag[0] }}">{{ tag[0]  }}</a></li>
+        {% endfor  %}
+<!--         ({{ tag[1].size  }}) -->
+</ul>
+</div>
+

@@ -1,0 +1,49 @@
+---
+layout: default
+title: "品质生活-天猫精选店铺"
+description: "精选天猫店铺,回到初心,购我所想"
+keywords: 回到初心,购我所想
+group: 0
+---
+
+<!-- 文章列表  jing-->
+{% for post in paginator.posts %}
+<div class="store-box">
+    <div class="store-top">
+        <div class="store-info">
+            <h4>
+                <a href="{{ site:url  }}{{ post.url  }}" target="_blank">{{post.shop.name}}</a>
+            </h4>
+            <p>{{ post.subtitle }}</p>
+        </div>
+        <div class="store-logo">
+            {% if post.img %}
+            <a href="http://{{ post.shop.url }}" target="_blank" title = "{{post.shop.name}}">
+                <img src="{{ site:url }}/images/{{ post.img }}" alt="{{post.store.name}}" />
+            </a>
+            {% endif %}
+        </div>
+    </div>
+   <div class="store-brand">
+        <a class="stoe-brand-story " href="{{ post.url }}" target="_blank" rel="nofollow">
+            <span>品牌介绍</span><i class="s_info_story_arrow"></i>
+        </a>
+        <div class="s_info_pms_con J_pmsCon">
+            <span title=""></span>
+        </div>
+    </div>
+<!--     <div class="store-bottom">
+        <div class="metatag">
+            <ul class="tags">
+                {% assign tags_list = post.tags %}
+            {% include com/tags_list %}
+            </ul>
+            <a href="" class="au" target="_blank">
+                <span>{{post.author}}</span> <i></i>
+            </a>
+            <a href="" class="sor">{{post.category}}</a>
+        </div>
+    </div> -->
+
+</div>
+{% endfor %}
